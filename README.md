@@ -1,6 +1,11 @@
 # bloc_horaire
 Import data to display it as a bloc on the Drupal website.
 
+
+## Credits
+[Sciences Po - Library](http://www.sciencespo.fr/bibliotheque/en)
+
+
 ## Licenses
 [LGPL V3.0](http://www.gnu.org/licenses/lgpl.txt "LGPL V3.0")
 
