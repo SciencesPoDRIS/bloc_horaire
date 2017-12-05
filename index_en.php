@@ -19,6 +19,7 @@ $schedule_url = 'data_en.json';
  ***/
 
 function get_final_schedule($schedule_array, $schedule_date = null) {
+    global $schedule_date_format;
     $schedule_return = key(array_count_values($schedule_array));
     $schedule_return_bis = '';
     $schedule_first_open_day = 'Monday';
@@ -26,21 +27,51 @@ function get_final_schedule($schedule_array, $schedule_date = null) {
     // If there is only one value in this array, return this value
     if(array_count_values($schedule_array)[$schedule_return] != 5 && !empty($schedule_date)) {
         // If there is a holiday in this week
+        // If the librairies are closed on Monday
         if($schedule_array['Monday'] != $schedule_return) {
             $schedule_return_bis .= '<li>Warning, closed on Monday ' . date($schedule_date_format, strtotime($schedule_date)) . '.</li>';
             $schedule_first_open_day = 'Tuesday';
         }
+        // If the librairies are closed on Tuesday
         if($schedule_array['Tuesday'] != $schedule_return) {
             $schedule_return_bis .= '<li>Warning, closed on Tuesday ' . date($schedule_date_format, strtotime($schedule_date . ' +1 day')) . '.</li>';
+            // If the libraries are also closed on Monday
+            if($schedule_array['Monday'] != $schedule_return) {
+                $schedule_first_open_day = 'Wednesday';
+            }
+            // If the librairies are also closed on Wednesday, Thursday and Friday
+            if(($schedule_array['Wednesday'] != $schedule_return) and ($schedule_array['Thursday'] != $schedule_return) and ($schedule_array['Friday'] != $schedule_return)) {
+                $schedule_last_open_day = 'Monday';
+            }
         }
+        // If the librairies are closed on Wednesday
         if($schedule_array['Wednesday'] != $schedule_return) {
             $schedule_return_bis .= '<li>Warning, closed on Wednesday ' . date($schedule_date_format, strtotime($schedule_date . ' +2 day')) . '.</li>';
+            // If the librairies are also closed on Monday and Tuesday
+            if(($schedule_array['Monday'] != $schedule_return) && ($schedule_array['Tuesday'] != $schedule_return)) {
+                $schedule_first_open_day = 'Thursday';
+            }
+            // If the librairies are also closed on Thursday and Friday
+            if(($schedule_array['Thursday'] != $schedule_return) and ($schedule_array['Friday'] != $schedule_return)) {
+                $schedule_last_open_day = 'Tuesday';
+            }
         }
+        // If the librairies are closed on Thursday
         if($schedule_array['Thursday'] != $schedule_return) {
             $schedule_return_bis .= '<li>Warning, closed on Thursday ' . date($schedule_date_format, strtotime($schedule_date . ' +3 day')) . '.</li>';
+            // If the librairies are also closed on Monday, Tuesday and Wednesday
+            if(($schedule_array['Monday'] != $schedule_return) && ($schedule_array['Tuesday'] != $schedule_return) && ($schedule_array['Wednesday'] != $schedule_return)) {
+                $schedule_first_open_day = 'Friday';
+            }
+            // If the librairies are also closed on Friday
+            if($schedule_array['Friday'] != $schedule_return) {
+                $schedule_last_open_day = 'Wednesday';
+            }
         }
+        // If the librairies are closed on Friday
         if($schedule_array['Friday'] != $schedule_return) {
             $schedule_return_bis .= '<li>Warning, closed on Friday ' . date($schedule_date_format, strtotime($schedule_date . ' +4 day')) . '.</li>';
+            $schedule_last_open_day = 'Thursday';
         }
     }
     return Array($schedule_return, $schedule_return_bis, $schedule_first_open_day, $schedule_last_open_day);
