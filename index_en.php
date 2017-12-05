@@ -1,10 +1,16 @@
 <?php
 
+// 2. Erreur PHP en PPRD
+// 3. Adapter les jours de semaine en fonction de la fermeture (Mardi - Vendredi)
+// 4. Consultation du dimanche, afficher la semaine suivante
+// 5. Ajouter la date du jour concerné Monday 27/11
+
 /***
  * Variables
  ***/
 
 $schedule_date_format = "m-d-Y";
+$schedule_url = "https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=1&systemTime=0&lid=5832";
 
 
 /***
@@ -42,7 +48,6 @@ function get_final_schedule($schedule_array, $schedule_date = null) {
  ***/
 
 // Collect data from Libcal API
-$schedule_url = "https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=1&systemTime=0&lid=5832";
 $schedule_json = file_get_contents($schedule_url);
 $schedule_data = json_decode($schedule_json, TRUE);
 
@@ -107,6 +112,7 @@ if(!empty($schedule_27rsg_week_message)) {
     $schedule_block .= "$schedule_27rsg_week_message";
 }
 
+// Build the block content in HTML
 $schedule_html = "";
 $schedule_html .= "<div id=\"entre-etudiant\">";
 $schedule_html .= "<h2>Students</h2>";
