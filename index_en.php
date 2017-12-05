@@ -1,15 +1,16 @@
 <?php
 
-// 2. Erreur PHP en PPRD
-// 4. Consultation du dimanche, afficher la semaine suivante
+// TODO
+// 1. Erreur PHP en PPRD
+// 2. French date should be formatted into dd/mm/yyyy ?
 
 /***
  * Variables
  ***/
 
 $schedule_date_format = 'm-d-Y';
-// $schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=1&systemTime=0&lid=5832';
-$schedule_url = 'data_en.json';
+$schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=2&systemTime=0&lid=5832';
+// $schedule_url = 'data_en.json';
 
 
 /***
@@ -75,70 +76,81 @@ function get_final_schedule($schedule_array, $schedule_date = null) {
     return Array($schedule_return, $schedule_return_bis, $schedule_first_open_day, $schedule_last_open_day);
 }
 
+// This function return True if today is sunday and I can stay all day long in my bed
+// Else return false
+function is_today_sunday() {
+    if (date('N') == 7) {
+        return True;
+    } else {
+        return False;
+    }
+}
+
 
 /***
  * Script / Main
  ***/
 
 // Collect data from Libcal API
-$schedule_json = file_get_contents($schedule_url);
-$schedule_data = json_decode($schedule_json, TRUE);
+$schedule_data = json_decode(file_get_contents($schedule_url), TRUE);
+// Set week index
+$schedule_week_index = (is_today_sunday() ? 1 : 0);
 
 // Grab interesting data
 // Week
 // 27 rue Saint Guillaume, Week, Opening hour
 $schedule_27rsg_week_open_array = Array(
-    'Monday' => $schedule_data['loc_5858']['weeks'][0]['Monday']['times']['hours'][0]['from'],
-    'Tuesday' => $schedule_data['loc_5858']['weeks'][0]['Tuesday']['times']['hours'][0]['from'],
-    'Wednesday' => $schedule_data['loc_5858']['weeks'][0]['Wednesday']['times']['hours'][0]['from'],
-    'Thursday' => $schedule_data['loc_5858']['weeks'][0]['Thursday']['times']['hours'][0]['from'],
-    'Friday' => $schedule_data['loc_5858']['weeks'][0]['Friday']['times']['hours'][0]['from']
+    'Monday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Monday']['times']['hours'][0]['from'],
+    'Tuesday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Tuesday']['times']['hours'][0]['from'],
+    'Wednesday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Wednesday']['times']['hours'][0]['from'],
+    'Thursday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Thursday']['times']['hours'][0]['from'],
+    'Friday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Friday']['times']['hours'][0]['from']
 );
-list($schedule_27rsg_week_open, $schedule_27rsg_week_message, $schedule_first_open_day, $schedule_last_open_day) = get_final_schedule($schedule_27rsg_week_open_array, $schedule_data['loc_5858']['weeks'][0]['Monday']['date']);
+list($schedule_27rsg_week_open, $schedule_27rsg_week_message, $schedule_first_open_day, $schedule_last_open_day) = get_final_schedule($schedule_27rsg_week_open_array, $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Monday']['date']);
 // 27 rue Saint Guillaume, Week, Closing hour
 $schedule_27rsg_week_close_array = Array(
-    'Monday' => $schedule_data['loc_5858']['weeks'][0]['Monday']['times']['hours'][0]['to'],
-    'Tuesday' => $schedule_data['loc_5858']['weeks'][0]['Tuesday']['times']['hours'][0]['to'],
-    'Wednesday' => $schedule_data['loc_5858']['weeks'][0]['Wednesday']['times']['hours'][0]['to'],
-    'Thursday' => $schedule_data['loc_5858']['weeks'][0]['Thursday']['times']['hours'][0]['to'],
-    'Friday' => $schedule_data['loc_5858']['weeks'][0]['Friday']['times']['hours'][0]['to']
+    'Monday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Monday']['times']['hours'][0]['to'],
+    'Tuesday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Tuesday']['times']['hours'][0]['to'],
+    'Wednesday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Wednesday']['times']['hours'][0]['to'],
+    'Thursday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Thursday']['times']['hours'][0]['to'],
+    'Friday' => $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Friday']['times']['hours'][0]['to']
 );
 $schedule_27rsg_week_close = get_final_schedule($schedule_27rsg_week_close_array)[0];
 // 30 rue Saint Guillaume, Week, Opening hour
 $schedule_30rsg_week_open_array = Array(
-    'Monday' => $schedule_data['loc_5859']['weeks'][0]['Monday']['times']['hours'][0]['from'],
-    'Tuesday' => $schedule_data['loc_5859']['weeks'][0]['Tuesday']['times']['hours'][0]['from'],
-    'Wednesday' => $schedule_data['loc_5859']['weeks'][0]['Wednesday']['times']['hours'][0]['from'],
-    'Thursday' => $schedule_data['loc_5859']['weeks'][0]['Thursday']['times']['hours'][0]['from'],
-    'Friday' => $schedule_data['loc_5859']['weeks'][0]['Friday']['times']['hours'][0]['from']
+    'Monday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Monday']['times']['hours'][0]['from'],
+    'Tuesday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Tuesday']['times']['hours'][0]['from'],
+    'Wednesday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Wednesday']['times']['hours'][0]['from'],
+    'Thursday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Thursday']['times']['hours'][0]['from'],
+    'Friday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Friday']['times']['hours'][0]['from']
 );
 $schedule_30rsg_week_open = get_final_schedule($schedule_30rsg_week_open_array)[0];
 // 30 rue Saint Guillaume, Week, Closing hour
 $schedule_30rsg_week_close_array = Array(
-    'Monday' => $schedule_data['loc_5859']['weeks'][0]['Monday']['times']['hours'][0]['to'],
-    'Tuesday' => $schedule_data['loc_5859']['weeks'][0]['Tuesday']['times']['hours'][0]['to'],
-    'Wednesday' => $schedule_data['loc_5859']['weeks'][0]['Wednesday']['times']['hours'][0]['to'],
-    'Thursday' => $schedule_data['loc_5859']['weeks'][0]['Thursday']['times']['hours'][0]['to'],
-    'Friday' => $schedule_data['loc_5859']['weeks'][0]['Friday']['times']['hours'][0]['to']
+    'Monday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Monday']['times']['hours'][0]['to'],
+    'Tuesday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Tuesday']['times']['hours'][0]['to'],
+    'Wednesday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Wednesday']['times']['hours'][0]['to'],
+    'Thursday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Thursday']['times']['hours'][0]['to'],
+    'Friday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Friday']['times']['hours'][0]['to']
 );
 $schedule_30rsg_week_close = get_final_schedule($schedule_30rsg_week_close_array)[0];
 // 27 rue Saint Guillaume, Saturday, Opening hour
-$schedule_27rsg_saturday_open = $schedule_data['loc_5858']['weeks'][0]['Saturday']['times']['hours'][0]['from'];
+$schedule_27rsg_saturday_open = $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Saturday']['times']['hours'][0]['from'];
 // 27 rue Saint Guillaume, Saturday, Closing hour
-$schedule_27rsg_saturday_close = $schedule_data['loc_5858']['weeks'][0]['Saturday']['times']['hours'][0]['to'];
+$schedule_27rsg_saturday_close = $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Saturday']['times']['hours'][0]['to'];
 // 30 rue Saint Guillaume, Saturday, Opening hour
-$schedule_30rsg_saturday_open = $schedule_data['loc_5859']['weeks'][0]['Saturday']['times']['hours'][0]['from'];
+$schedule_30rsg_saturday_open = $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Saturday']['times']['hours'][0]['from'];
 // 30 rue Saint Guillaume, Saturday, Closing hour
-$schedule_30rsg_saturday_close = $schedule_data['loc_5859']['weeks'][0]['Saturday']['times']['hours'][0]['to'];
+$schedule_30rsg_saturday_close = $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Saturday']['times']['hours'][0]['to'];
 
 // Build the schedules bloc
 $schedule_block = "<li>$schedule_first_open_day to $schedule_last_open_day:</li>";
 $schedule_block .= "<li>$schedule_27rsg_week_open - $schedule_27rsg_week_close (27SG) | $schedule_30rsg_week_open - $schedule_30rsg_week_close (30SG)</li>";
 // If the library is closed on saturday
 if(empty($schedule_27rsg_saturday_open)) {
-    $schedule_27rsg_week_message .= '<li>Warning, closed on Saturday ' . date($schedule_date_format, strtotime($schedule_data['loc_5858']['weeks'][0]['Saturday']['date'])) . '.</li>';
+    $schedule_27rsg_week_message .= '<li>Warning, closed on Saturday ' . date($schedule_date_format, strtotime($schedule_data['loc_5858']['weeks'][$schedule_week_index]['Saturday']['date'])) . '.</li>';
 } else {
-    $schedule_block .= '<li>Saturday ' . date($schedule_date_format, strtotime($schedule_data['loc_5858']['weeks'][0]['Saturday']['date'])) . ':</li>';
+    $schedule_block .= '<li>Saturday ' . date($schedule_date_format, strtotime($schedule_data['loc_5858']['weeks'][$schedule_week_index]['Saturday']['date'])) . ':</li>';
     $schedule_block .= "<li>$schedule_27rsg_saturday_open - $schedule_27rsg_saturday_close (27SG) | $schedule_30rsg_saturday_open - $schedule_30rsg_saturday_close (30SG)</li>";
 }
 if(!empty($schedule_27rsg_week_message)) {
