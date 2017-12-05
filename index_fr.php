@@ -4,7 +4,7 @@
  * Variables
  ***/
 
-$schedule_date_format = 'd-m-Y';
+$schedule_date_format = 'd/m';
 $schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=2&systemTime=1&lid=5832';
 // $schedule_url = 'data_fr.json';
 
