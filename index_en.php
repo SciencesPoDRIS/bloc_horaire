@@ -10,7 +10,8 @@
  ***/
 
 $schedule_date_format = "m-d-Y";
-$schedule_url = "https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=1&systemTime=0&lid=5832";
+// $schedule_url = "https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=1&systemTime=0&lid=5832";
+$schedule_url = "data_en.json";
 
 
 /***
