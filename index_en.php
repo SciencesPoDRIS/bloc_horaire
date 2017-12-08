@@ -2,7 +2,6 @@
 
 // TODO
 // 1. Erreur PHP en PPRD
-// 2. French date should be formatted into dd/mm/yyyy ?
 
 /***
  * Variables
