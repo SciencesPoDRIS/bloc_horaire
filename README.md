@@ -2,6 +2,13 @@
 Import data to display it as a bloc on the Drupal website.
 
 
+## Admin
+1. Open the PPRD website
+2. Log in
+3. Gestion du contenu / Contenu / Liste
+4. Horaires
+5. modifier
+
 ## Credits
 [Sciences Po - Library](http://www.sciencespo.fr/bibliotheque/en)
 
