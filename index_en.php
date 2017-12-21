@@ -1,10 +1,7 @@
 <?php
 
 // TODO
-// 1. Corriger version EN
-// 2. Commiter tout ça
-// 3. Vider les caches et actualiser la homepage de PPRD :
-//      http://pprd.kit2site.sciencespo.fr/bibliotheque/
+// 1. Bug PPRD
 
 /***
  * Variables
