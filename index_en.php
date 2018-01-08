@@ -1,15 +1,11 @@
 <?php
 
-// TODO
-// 1. Bug PPRD
-
 /***
  * Variables
  ***/
 
 $schedule_date_format = 'm-d';
 $schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=2&systemTime=0&lid=5832';
-// $schedule_url = 'data_en.json';
 
 
 /***
@@ -135,7 +131,7 @@ $schedule_30rsg_week_close_array = Array(
     'Thursday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Thursday']['times']['hours'][0]['to'],
     'Friday' => $schedule_data['loc_5859']['weeks'][$schedule_week_index]['Friday']['times']['hours'][0]['to']
 );
-$tmp = get_final_schedule($schedule_30rsg_week_close_array):
+$tmp = get_final_schedule($schedule_30rsg_week_close_array);
 $schedule_30rsg_week_close = $tmp[0];
 // 27 rue Saint Guillaume, Saturday, Opening hour
 $schedule_27rsg_saturday_open = $schedule_data['loc_5858']['weeks'][$schedule_week_index]['Saturday']['times']['hours'][0]['from'];

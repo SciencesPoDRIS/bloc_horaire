@@ -156,6 +156,7 @@ if(!empty($schedule_27rsg_week_message)) {
     $schedule_block .= "$schedule_27rsg_week_message";
 }
 
+// Build the block content in HTML
 $schedule_html = '';
 $schedule_html .= '<div id="entre-etudiant">';
 $schedule_html .= '<h2>Etudiants</h2>';
