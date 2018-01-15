@@ -5,7 +5,7 @@
  ***/
 
 $schedule_date_format = 'd/m';
-$schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=2&systemTime=1&lid=5832';
+$schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=json&weeks=2&systemTime=1&lid=5832&t=' . (integer) time();
 
 
 /***
@@ -13,7 +13,7 @@ $schedule_url = 'https://api3-eu.libcal.com/api_hours_grid.php?iid=3328&format=j
  ***/
 
 function get_final_schedule($schedule_array, $schedule_date = null) {
-    global $schedule_date_format;
+    $schedule_date_format = 'd/m';
     $schedule_count_values = array_count_values($schedule_array);
     $schedule_return = key($schedule_count_values);
     $schedule_return_bis = '';
