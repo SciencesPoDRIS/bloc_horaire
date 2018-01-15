@@ -1,13 +1,15 @@
 # bloc_horaire
-Import data to display it as a bloc on the Drupal website.
+Import data from Libcal API to display it as a bloc on the Drupal website.
 
 
 ## Admin
 1. Open the PPRD website
 2. Log in
-3. Gestion du contenu / Contenu / Liste
-4. Horaires
-5. modifier
+3. Gestion du contenu / Blocs / Liste
+4. Entree par public / Entrée par publique FR
+5. configurer
+6. Entree par public / Entrée par publique EN
+7. configurer
 
 ## Credits
 [Sciences Po - Library](http://www.sciencespo.fr/bibliotheque/en)
