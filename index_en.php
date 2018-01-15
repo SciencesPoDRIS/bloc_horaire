@@ -156,39 +156,34 @@ if(!empty($schedule_27rsg_week_message)) {
     $schedule_block .= "$schedule_27rsg_week_message";
 }
 
-// Build the block content in HTML
-$schedule_html = '';
-$schedule_html .= '<div id="entre-etudiant">';
-$schedule_html .= '<h2>Students</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= '<li><a href="http://sciencespo.libcal.com/booking/salles-travail-groupe" target="_blank">Book a group study room</a></li>';
-$schedule_html .= '<li><a href="en/use-the-library/copy-print">Print, scan and Killprint</a></li>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/en/search/eresources">Online newspapers</a></li>';
-$schedule_html .= '<li><a href="en/use-the-library/local-campuses">Local Campus</a></li>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/en/ask-us/surveys/libqual/Libqual2017">Libqual+ 2017 Survey</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-$schedule_html .= '<div id="entre-enseignant">';
-$schedule_html .= '<h2>Faculty and researchers</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= '<li><a href="en/faculty-researchers/delivery-service">Delivery service</a></li>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/ecole-doctorale/en/content/graduate-school-library" target="_blank">Research library (FR)</a></li>';
-$schedule_html .= '<li><a href="http://spire.sciencespo.fr/web/?lang=en" target="_blank">Spire, open archive</a></li>';
-$schedule_html .= '<li><a href="https://docs.google.com/a/sciencespo.fr/forms/d/e/1FAIpQLSfVnVnYZIW8QpVm5p8TEjoQQccdLHDdThJa-jkj7Q_tqGqIwQ/viewform" target="_blank">Digitizing on request (FR)</a></li>';
-$schedule_html .= '<li><a href="en/faculty-researchers/research-data-management">Research data management (FR)</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/rechercher/trucs-astuces">Trucs et astuces (FR)</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-$schedule_html .= '<div id="entre-venir">';
-$schedule_html .= '<h2>Visit</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= $schedule_block;
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/en/visit/opening-hours">All about opening hours</a></li>';
-$schedule_html .= '<li><a href="en/visit/library-access">Library access</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-
-// Display the whole block
-print $schedule_html;
-
 ?>
+
+<div id="entre-etudiant">
+    <h2>Students</h2>
+    <ul>
+        <li><a href="http://sciencespo.libcal.com/booking/salles-travail-groupe" target="_blank">Book a group study room</a></li>
+        <li><a href="en/use-the-library/copy-print">Print, scan and Killprint</a></li>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/en/search/eresources">Online newspapers</a></li>
+        <li><a href="en/use-the-library/local-campuses">Local Campus</a></li>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/en/ask-us/surveys/libqual/Libqual2017">Libqual+ 2017 Survey</a></li>
+    </ul>
+</div>
+<div id="entre-enseignant">
+    <h2>Faculty and researchers</h2>
+    <ul>
+        <li><a href="en/faculty-researchers/delivery-service">Delivery service</a></li>
+        <li><a href="http://www.sciencespo.fr/ecole-doctorale/en/content/graduate-school-library" target="_blank">Research library (FR)</a></li>
+        <li><a href="http://spire.sciencespo.fr/web/?lang=en" target="_blank">Spire, open archive</a></li>
+        <li><a href="https://docs.google.com/a/sciencespo.fr/forms/d/e/1FAIpQLSfVnVnYZIW8QpVm5p8TEjoQQccdLHDdThJa-jkj7Q_tqGqIwQ/viewform" target="_blank">Digitizing on request (FR)</a></li>
+        <li><a href="en/faculty-researchers/research-data-management">Research data management (FR)</a></li>
+        <li><a href="/bibliotheque/fr/rechercher/trucs-astuces">Trucs et astuces (FR)</a></li>
+    </ul>
+</div>
+<div id="entre-venir">
+    <h2>Visit</h2>
+    <ul>
+        <?php print $schedule_block; ?>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/en/visit/opening-hours">All about opening hours</a></li>
+        <li><a href="en/visit/library-access">Library access</a></li>
+    </ul>
+</div>

@@ -156,39 +156,34 @@ if(!empty($schedule_27rsg_week_message)) {
     $schedule_block .= "$schedule_27rsg_week_message";
 }
 
-// Build the block content in HTML
-$schedule_html = '';
-$schedule_html .= '<div id="entre-etudiant">';
-$schedule_html .= '<h2>Etudiants</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= '<li><a href="http://sciencespo.libcal.com/booking/salles-travail-groupe" target="_blank">Réserver une salle de travail</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/etudier/photocopier-imprimer">Imprimer, scanner, killprint</a></li>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/fr/rechercher/eressources" target="_blank">Lire la presse en ligne</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/etudier/etudiants-campus-regions">Campus en région</a></li>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/fr/a-votre-ecoute/enquetes/libqual/libqual2017">Enquête Libqual+ 2017</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-$schedule_html .= '<div id="entre-enseignant">';
-$schedule_html .= '<h2>Enseignants et Chercheurs</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/ecole-doctorale/fr/content/bibliotheque-de-lecole-doctorale" target="_blank">Bibliothèque de recherche</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/enseignants-chercheurs/gestion-donnees-recherche">Gestion des données de la recherche</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/enseignants-chercheurs/navette">Navette chercheurs</a></li>';
-$schedule_html .= '<li><a href="https://docs.google.com/a/sciencespo.fr/forms/d/e/1FAIpQLSfVnVnYZIW8QpVm5p8TEjoQQccdLHDdThJa-jkj7Q_tqGqIwQ/viewform" target="_blank">Numérisation à la demande</a></li>';
-$schedule_html .= '<li><a href="http://spire.sciences-po.fr/" target="_blank">Spire, l\'archive ouverte</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/rechercher/trucs-astuces">Trucs et astuces</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-$schedule_html .= '<div id="entre-venir">';
-$schedule_html .= '<h2>Venir</h2>';
-$schedule_html .= '<ul>';
-$schedule_html .= $schedule_block;
-$schedule_html .= '<li><a href="http://www.sciencespo.fr/bibliotheque/fr/venir/horaires">Tous les horaires</a></li>';
-$schedule_html .= '<li><a href="/bibliotheque/fr/venir/conditions-acces">S\'inscrire</a></li>';
-$schedule_html .= '</ul>';
-$schedule_html .= '</div>';
-
-// Display the whole block
-print $schedule_html;
-
 ?>
+
+<div id="entre-etudiant">
+    <h2>Etudiants</h2>
+    <ul>
+        <li><a href="http://sciencespo.libcal.com/booking/salles-travail-groupe" target="_blank">Réserver une salle de travail</a></li>
+        <li><a href="/bibliotheque/fr/etudier/photocopier-imprimer">Imprimer, scanner, killprint</a></li>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/fr/rechercher/eressources" target="_blank">Lire la presse en ligne</a></li>
+        <li><a href="/bibliotheque/fr/etudier/etudiants-campus-regions">Campus en région</a></li>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/fr/a-votre-ecoute/enquetes/libqual/libqual2017">Enquête Libqual+ 2017</a></li>
+    </ul>
+</div>
+<div id="entre-enseignant">
+    <h2>Enseignants et Chercheurs</h2>
+    <ul>
+        <li><a href="http://www.sciencespo.fr/ecole-doctorale/fr/content/bibliotheque-de-lecole-doctorale" target="_blank">Bibliothèque de recherche</a></li>
+        <li><a href="/bibliotheque/fr/enseignants-chercheurs/gestion-donnees-recherche">Gestion des données de la recherche</a></li>
+        <li><a href="/bibliotheque/fr/enseignants-chercheurs/navette">Navette chercheurs</a></li>
+        <li><a href="https://docs.google.com/a/sciencespo.fr/forms/d/e/1FAIpQLSfVnVnYZIW8QpVm5p8TEjoQQccdLHDdThJa-jkj7Q_tqGqIwQ/viewform" target="_blank">Numérisation à la demande</a></li>
+        <li><a href="http://spire.sciences-po.fr/" target="_blank">Spire, l'archive ouverte</a></li>
+        <li><a href="/bibliotheque/fr/rechercher/trucs-astuces">Trucs et astuces</a></li>
+    </ul>
+</div>
+<div id="entre-venir">
+    <h2>Venir</h2>
+    <ul>
+        <?php print $schedule_block; ?>
+        <li><a href="http://www.sciencespo.fr/bibliotheque/fr/venir/horaires">Tous les horaires</a></li>
+        <li><a href="/bibliotheque/fr/venir/conditions-acces">S'inscrire</a></li>
+    </ul>
+</div>
